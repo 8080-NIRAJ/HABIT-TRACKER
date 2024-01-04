@@ -12,10 +12,11 @@
         <a href="/users/logout" class="btn btn-secondary">Logout</a>
     </div>
 </div>
-<!-- Habit Container -->
+<!-- Habit Container Section-->
 <div class="habit-box text-center">
     <h2>Add New Habit</h2>
     <form action="/user-view" method="POST" class="box-header">
+        <!-- Toggle View Buttons (Daily/Weekly) -->
         <div class="btn-group mb-4" aria-label="Change View">
             <% if(user.view === "dailyView"){ %>
             <button type="submit" class="btn btn-primary active" aria-pressed="true">Daily</button>
@@ -26,6 +27,7 @@
             <% } %>
         </div>
     </form>
+    <!-- Include Partial Messages -->
     <%- include ("./partials/messages") %>
     <div class="habit">
         <form action="/dashboard" method="POST" class="box-header mb-4">
@@ -39,6 +41,7 @@
         <i class="fas fa-minus-circle" style="color: gold;"></i>
         -Unmarked&emsp;&emsp;
         <% if(user.view === "dailyView"){ %>
+    <!-- Display Daily Habits -->
         <ul class="habit-list">
             <% userHabit.forEach(habitD => {
                  let tzoffset = (new Date()).getTimezoneOffset() * 60000, get=false, check='';
@@ -51,8 +54,11 @@
                     }
                 });
                 %>
+              <!-- Individual Habit Item -->   
             <li class="habit-List">
                 <a href="status-update/?id=<%= habitD._id %>&date=<%= today %>" class="status-check">
+                    <!-- Display status icons based on completion status -->
+                    <!-- ... (code logic) -->
                     <% if(get && check==='yes'){ %>
                     <i class="fas fa-check-circle"></i>
                     <% } else if(get && check==='no'){ %>
@@ -62,7 +68,9 @@
                     <% } %>
                 </a>
                 &emsp;
+                 <!-- Habit Name -->
                 <div class="habit-list-item-name"><%= habitD.content %></div>
+                <!-- Favorite Icon -->
                 <a href="/favorite-habit/?id=<%= habitD._id %>" class="favorite">
                     <% if(habitD.favorite) { %>
                     <i class="fas fa-star"></i>
@@ -70,6 +78,7 @@
                     <i class="far fa-star"></i>
                     <% } %>
                 </a>
+                <!-- Remove Icon -->
                 <a href="/remove/?id=<%= habitD._id %>" class="remove">
                     <i class="far fa-trash-alt"></i>
                 </a>
@@ -77,10 +86,14 @@
             <% }) %>
         </ul>
         <% } else { %>
+        <!-- Display Weekly Habits -->
         <ul class="habit-list text-center">
             <% userHabit.forEach(habitD => { %>
+                <!-- Individual Habit Item -->
             <li class="habit-List">
+                  <!-- Habit Name -->
                 <div class="habit-list-item-name"><%= habitD.content %></div>
+                  <!-- Favorite Icon -->
                 <a href="/favorite-habit/?id=<%= habitD._id %>" class="favorite">
                     <% if(habitD.favorite) { %>
                     <i class="fas fa-star"></i>
@@ -91,6 +104,7 @@
                 <a href="/remove/?id=<%= habitD._id %>" class="remove">
                     <i class="far fa-trash-alt"></i>
                 </a>
+                 <!-- Loop through weekdays for status check -->
                 <% weekday.forEach(day => {
                      let get = false, check = '';
                      habitD.dates.find(function (item, index) {

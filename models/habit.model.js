@@ -1,6 +1,6 @@
 //const mongoose = require('mongoose');
 import mongoose from "mongoose";
-
+// Define a Mongoose schema for the Habit entity
 const HabitSchema = new mongoose.Schema({
     content: {
         type: String,
@@ -21,6 +21,6 @@ const HabitSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
-
+// Create a Mongoose model for the 'habit' 
 export const habitModel = mongoose.model('habit', HabitSchema);
 

@@ -4,7 +4,7 @@ import getDay from '../assets/week.js';
 
 var email = "";
 
-
+// Controller function to retrieve and render the dashboard
 export const WelcomePage=async(req,res)=>{
         res.render('welcomePage')
     }

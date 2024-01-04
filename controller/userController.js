@@ -2,14 +2,15 @@ import {userModel} from '../models/user.model.js';
 
 
 export default class UserController{
+    // Method to render the login page
     async loginPage(req,res){
         res.render('loginPage');
     }
-
+    // Method to render the registration page
     async registerPage(req,res){
         res.render('registerPage')
     }
-
+    // Method to register a new user
     async registerUser(req,res){
         const { name, email } = req.body;
 
@@ -53,7 +54,7 @@ export default class UserController{
         }
     }
     }
-
+    // Method to log in a user
     async loginUser(req,res){
         const { email } = req.body;
         
@@ -78,7 +79,7 @@ export default class UserController{
         res.status(500).send('Server Error');
     }
   }
-
+    // Method to log out a user
     async logoutUser(req,res){
         req.flash('successMassage', 'logged out successfully');
         res.redirect('/users/login');

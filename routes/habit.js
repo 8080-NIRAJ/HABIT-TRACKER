@@ -1,4 +1,4 @@
-//const express = require('express');
+
 import express from 'express';
 
 import {WelcomePage,
@@ -9,30 +9,30 @@ import {WelcomePage,
     habitCompletion, 
     deletingHabit} from '../controller/habitController.js';
 
-
+// Create an Express Router
 const indexRouter = express.Router();
 
-
-//---------Welcome Page----------//
+// Define routes using different HTTP methods and corresponding controller methods
+// Route for the welcome page
 indexRouter.get('/',WelcomePage);
 
-//---------Dashboard GET----------//
-//var email = "";
+// Route for displaying the dashboard
 indexRouter.get('/dashboard',getDashBorad);
 
-//-------------Handle Change View: Daily <--> Weekly--------------//
+// Route for viewing weekly daily updates (POST request)
 indexRouter.post('/user-view', viewWeekdailyUpdate)
 
-//---------Dashboard Add Habit----------//
+// Route for adding a habit (POST request)
 indexRouter.post('/dashboard', addHabit );
 
-//---------Dashboard Add/Remove Habit to/from Favorites----------//
+// Route for adding or removing a habit from favorites
 indexRouter.get("/favorite-habit", favoritesAddRemove);
 
-//-------------Update status of habit completion--------------//
+// Route for marking habit completion status
 indexRouter.get("/status-update", habitCompletion)
 
-//---------Deleting a habit----------//
+// Route for deleting a habit
 indexRouter.get("/remove", deletingHabit);
 
+// Export the indexRouter 
 export default  indexRouter;

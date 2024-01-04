@@ -7,7 +7,7 @@ export const connectUsingMongoose =async()=>{
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("mongodb connect using mongoose successfully")
+       
 
     }catch(err){
        console.log(err);
