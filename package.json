@@ -7,7 +7,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^8.0.3"
   },
-  "name": "habit-tracker",
+  "name": "Habit-Tracker",
   "description": "> A habit tracking app that will help you to create and maintain an awesome daily and weekly routine, which is one of the most powerful tools for achieving your goals and sending your life into an upwards spiral.",
   "version": "1.0.0",
   "type": "module",
